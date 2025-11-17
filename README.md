@@ -75,8 +75,8 @@ Think of Eureka as a **phone book for microservices**:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourorg/yushan-platform-service-registry.git
-cd yushan-platform-service-registry
+git clone https://github.com/phutruonnttn/yushan-microservices-service-registry.git
+cd yushan-microservices-service-registry
 
 # Start Eureka Server
 docker-compose up -d
@@ -92,8 +92,8 @@ open http://localhost:8761
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourorg/yushan-platform-service-registry.git
-cd yushan-platform-service-registry
+git clone https://github.com/phutruonnttn/yushan-microservices-service-registry.git
+cd yushan-microservices-service-registry
 
 # Run with Maven wrapper
 ./mvnw spring-boot:run
@@ -122,7 +122,7 @@ mvn spring-boot:run
 ## 📁 Repository Structure
 
 ```
-yushan-platform-service-registry/
+yushan-microservices-service-registry/
 ├── README.md                          # This file
 ├── pom.xml                           # Maven configuration
 ├── .gitignore                        # Git ignore rules
@@ -519,8 +519,8 @@ services:
 
 ```bash
 # 1. Clone the registry repository
-git clone https://github.com/yourorg/yushan-platform-service-registry.git
-cd yushan-platform-service-registry
+git clone https://github.com/phutruonnttn/yushan-microservices-service-registry.git
+cd yushan-microservices-service-registry
 
 # 2. Start Eureka (keep it running)
 docker-compose up -d
@@ -535,7 +535,7 @@ open http://localhost:8761
 
 1. **Start Eureka** (if not already running):
    ```bash
-   cd yushan-platform-service-registry
+   cd yushan-microservices-service-registry
    docker-compose start
    ```
 
@@ -554,7 +554,7 @@ open http://localhost:8761
    # Stop your microservice (Ctrl+C)
    
    # Stop Eureka (optional)
-   cd yushan-platform-service-registry
+   cd yushan-microservices-service-registry
    docker-compose stop
    ```
 
