@@ -38,7 +38,7 @@ jobs:
         cache: maven
         
     - name: Run Unit Tests
-      run: ./mvnw test -Dtest='!**/integration/**' -Dspring.profiles.active=test
+      run: ./mvnw test -Dspring.profiles.active=test
 
   lint-quality:
     name: Lint & Quality Checks
@@ -60,16 +60,13 @@ jobs:
         cache: maven
         
     - name: Run SpotBugs (static analysis)
-      run: ./mvnw spotbugs:check
-      continue-on-error: true
+      run: ./mvnw com.github.spotbugs:spotbugs-maven-plugin:check
       
     - name: Run Checkstyle (code style)
-      run: ./mvnw checkstyle:check
-      continue-on-error: true
+      run: ./mvnw org.apache.maven.plugins:maven-checkstyle-plugin:check
       
     - name: Generate SpotBugs SARIF
-      run: ./mvnw spotbugs:spotbugs -Dspotbugs.outputFormat=sarif -Dspotbugs.outputFile=spotbugs.sarif
-      continue-on-error: true
+      run: ./mvnw com.github.spotbugs:spotbugs-maven-plugin:spotbugs -Dspotbugs.outputFormat=sarif -Dspotbugs.outputFile=spotbugs.sarif
       
     - name: Upload SpotBugs SARIF to GitHub
       if: always() && hashFiles('spotbugs.sarif') != ''
@@ -78,17 +75,16 @@ jobs:
         sarif_file: spotbugs.sarif
         
     - name: Run Unit Tests and generate JaCoCo coverage
-      run: ./mvnw -B -Dspring.profiles.active=test test jacoco:report
+      run: ./mvnw -B -Dspring.profiles.active=test test org.jacoco:jacoco-maven-plugin:report
       
     - name: Run SonarCloud Analysis (use compiled classes and JaCoCo report)
       run: |
-        ./mvnw -B sonar:sonar \
+        ./mvnw -B org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
           -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml \
           -Dsonar.java.binaries=target/classes
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      continue-on-error: true
 
   security-scan:
     name: Security Scan
