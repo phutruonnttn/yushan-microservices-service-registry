@@ -677,6 +677,13 @@ The Service Registry includes unit tests to verify the Spring context loads succ
 - Uses `@EnableAutoConfiguration(exclude = {EurekaServerAutoConfiguration.class})` to prevent ApplicationInfoManager dependency issues
 - All tests passing ✅
 
+## Security
+
+### Vulnerability Fixes
+
+- ✅ **CVE-2025-48924 Fixed**: Excluded vulnerable `commons-lang:commons-lang@2.6` from `spring-cloud-starter-netflix-eureka-server` dependency
+- ✅ **Security Scanning**: CI/CD pipeline includes OWASP Dependency Check and Snyk vulnerability scanning
+
 ## CI/CD Pipeline
 
 The Service Registry includes a comprehensive CI/CD pipeline with:
