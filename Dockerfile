@@ -17,6 +17,9 @@ RUN ./mvnw dependency:go-offline -B
 # Copy source code
 COPY src ./src
 
+# Copy checkstyle.xml for code quality checks
+COPY checkstyle.xml checkstyle.xml
+
 # Build the application (skip tests for faster builds)
 RUN ./mvnw package -DskipTests
 
