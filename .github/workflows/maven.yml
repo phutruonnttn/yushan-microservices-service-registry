@@ -129,13 +129,11 @@ jobs:
       env:
         OSSINDEX_USER: ${{ secrets.OSSINDEX_USER }}
         OSSINDEX_TOKEN: ${{ secrets.OSSINDEX_TOKEN }}
-      continue-on-error: true
         
     - name: Run OWASP Dependency Check
       env:
         NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
-      run: ./mvnw -Dnvd.api.key="${NVD_API_KEY}" org.owasp:dependency-check-maven:check
-      continue-on-error: true
+      run: ./mvnw org.owasp:dependency-check-maven:check -Dnvd.api.key="${NVD_API_KEY}"
       
     - name: Upload Dependency-Check SARIF
       if: always() && hashFiles('target/dependency-check-report.sarif') != ''
@@ -170,7 +168,6 @@ jobs:
           --project-name=${{ github.repository }} \
           --severity-threshold=high \
           --sarif --sarif-file-output=snyk.sarif
-      continue-on-error: true
       
     - name: Upload Snyk result to GitHub Code Scanning
       if: always() && hashFiles('snyk.sarif') != ''
