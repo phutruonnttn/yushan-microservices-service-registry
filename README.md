@@ -661,6 +661,34 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
+## Testing
+
+### Unit Tests
+
+The Service Registry includes unit tests to verify the Spring context loads successfully:
+
+```bash
+# Run tests
+./mvnw test
+```
+
+**Test Configuration**:
+- Tests exclude `EurekaServerAutoConfiguration` to avoid Eureka server startup during tests
+- Uses `@EnableAutoConfiguration(exclude = {EurekaServerAutoConfiguration.class})` to prevent ApplicationInfoManager dependency issues
+- All tests passing ✅
+
+## CI/CD Pipeline
+
+The Service Registry includes a comprehensive CI/CD pipeline with:
+
+- ✅ **Unit Tests**: JUnit 5 tests for application context loading
+- ✅ **Code Quality**: SpotBugs static analysis, Checkstyle code style checks
+- ✅ **Code Coverage**: JaCoCo coverage reports
+- ✅ **Security Scanning**: OWASP Dependency Check and Snyk vulnerability scanning
+- ✅ **Container Scanning**: Trivy container vulnerability scanning
+- ✅ **Quality Gates**: SonarCloud analysis and quality gates
+- ✅ **Docker Build**: Automated Docker image building and pushing to GitHub Container Registry
+
 **Made with ❤️ by Yushan Platform Team**
 
-*Last Updated: October 2025*
+*Last Updated: November 2025*
